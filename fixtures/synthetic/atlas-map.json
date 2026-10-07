@@ -1,0 +1,37 @@
+{
+  "fixture_id": "atlas-map",
+  "domain": "maps",
+  "provider": "atlas",
+  "scenario": "synthetic-reference",
+  "source_record": {
+    "id": "synthetic-atlas-map-001",
+    "revision": "synthetic-revision-001",
+    "created_at": "2026-10-06T12:00:00Z",
+    "observed_at": "2026-10-06T12:00:00Z",
+    "map": {
+      "map_id": "synthetic-map-001",
+      "provider_map_id": "synthetic-atlas-001",
+      "revision": "synthetic-revision-001",
+      "topics": [
+        {
+          "id": "root",
+          "title": "Synthetic modernization reference"
+        },
+        {
+          "id": "discovery",
+          "title": "Discovery evidence"
+        }
+      ],
+      "relationships": [
+        {
+          "from": "root",
+          "to": "discovery",
+          "kind": "PARENT"
+        }
+      ],
+      "source": "synthetic://atlas/map/001",
+      "export_format": "JSON",
+      "readback_ref": "synthetic://atlas/readback/001"
+    }
+  }
+}

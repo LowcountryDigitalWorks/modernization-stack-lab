@@ -1,0 +1,24 @@
+{
+  "fixture_id": "forms-discovery",
+  "domain": "discovery",
+  "provider": "google-forms",
+  "scenario": "synthetic-reference",
+  "source_record": {
+    "id": "synthetic-forms-discovery-001",
+    "revision": "synthetic-revision-001",
+    "created_at": "2026-10-06T12:00:00Z",
+    "observed_at": "2026-10-06T12:00:00Z",
+    "responses": {
+      "question": "What would make this synthetic workflow useful?",
+      "answer": "Not sure yet",
+      "answer_state": "NOT_SURE",
+      "question_kind": "FIXED",
+      "follow_up_reason": "",
+      "answer_provenance": "Synthetic respondent entry",
+      "prohibited_data_guard": "PASS_SYNTHETIC",
+      "stopping_state": "HUMAN_REVIEW",
+      "normalized_field": "desired_outcome",
+      "human_qualification_required": true
+    }
+  }
+}

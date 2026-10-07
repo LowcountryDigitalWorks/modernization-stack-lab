@@ -1,0 +1,36 @@
+{
+  "fixture_id": "oss-ingest-document",
+  "domain": "ingest",
+  "provider": "oss-ingest",
+  "scenario": "synthetic-reference",
+  "source_record": {
+    "id": "synthetic-oss-ingest-document-001",
+    "revision": "synthetic-revision-001",
+    "created_at": "2026-10-06T12:00:00Z",
+    "observed_at": "2026-10-06T12:00:00Z",
+    "extraction": {
+      "input_ref": "fixture://synthetic-document.txt",
+      "media_class": "DOCUMENT",
+      "extraction_adapter": "oss-boundary-mock",
+      "fields": [
+        {
+          "name": "project",
+          "value": "Synthetic project",
+          "confidence": 0.95,
+          "source_location": "line:1"
+        }
+      ],
+      "tables": [
+        {
+          "name": "Synthetic effort",
+          "columns": ["task", "units"],
+          "rows": [["Fixture review", "1"]]
+        }
+      ],
+      "confidence": 0.95,
+      "provenance": "Synthetic text line/table fixture; no parser installed",
+      "validation_required": true,
+      "destination_candidate": "HUMAN_REVIEW"
+    }
+  }
+}

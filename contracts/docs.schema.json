@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ldw:lab:docs:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "domain",
+    "provider",
+    "provider_record_id",
+    "ldw_id",
+    "created_at",
+    "observed_at",
+    "source_ref",
+    "provenance",
+    "freshness",
+    "raw_ref",
+    "normalized_state",
+    "status",
+    "failure",
+    "idempotency_key",
+    "human_review_required",
+    "data_classification",
+    "execute",
+    "data"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ldw.lab-record.v1"
+    },
+    "domain": {
+      "const": "docs"
+    },
+    "provider": {
+      "type": "string",
+      "enum": ["plutusdoc", "suitedash"]
+    },
+    "provider_record_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200
+    },
+    "ldw_id": {
+      "type": "string",
+      "pattern": "^ldw_[a-f0-9]{64}$"
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "observed_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "source_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200,
+      "pattern": "^(synthetic|fixture)://[a-z0-9/_:.-]+$"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "fixture_id", "adapter_revision"],
+      "properties": {
+        "method": {
+          "const": "MOCK_FIXTURE"
+        },
+        "fixture_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "adapter_revision": {
+          "const": "lab-001.v1"
+        }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "as_of"],
+      "properties": {
+        "state": {
+          "const": "FIXTURE"
+        },
+        "as_of": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        }
+      }
+    },
+    "raw_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200,
+      "pattern": "^(synthetic|fixture)://[a-z0-9/_:.-]+$"
+    },
+    "normalized_state": {
+      "const": "REFERENCE_ONLY"
+    },
+    "status": {
+      "const": "NORMALIZED"
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "reason"],
+      "properties": {
+        "code": {
+          "const": "NONE"
+        },
+        "reason": {
+          "const": ""
+        }
+      }
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^replay_[a-f0-9]{64}$"
+    },
+    "human_review_required": {
+      "const": true
+    },
+    "data_classification": {
+      "const": "SYNTHETIC"
+    },
+    "execute": {
+      "const": false
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "document_id",
+        "provider_document_id",
+        "lifecycle_event",
+        "evidence_timestamp",
+        "recipients",
+        "audit",
+        "provider_readback",
+        "external_action",
+        "human_approval_required",
+        "execute"
+      ],
+      "properties": {
+        "document_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "provider_document_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "lifecycle_event": {
+          "type": "string",
+          "enum": [
+            "DRAFT",
+            "READY_FOR_APPROVAL",
+            "APPROVED",
+            "SENT",
+            "VIEWED",
+            "SIGNED_PARTIAL",
+            "COMPLETED",
+            "DECLINED",
+            "VOIDED",
+            "FAILED"
+          ]
+        },
+        "evidence_timestamp": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "address"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200,
+                "pattern": "^Synthetic "
+              },
+              "address": {
+                "type": "string",
+                "pattern": "^synthetic-[a-z0-9-]+@example\\.invalid$"
+              }
+            }
+          },
+          "maxItems": 30
+        },
+        "audit": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1200
+          },
+          "maxItems": 30
+        },
+        "provider_readback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state", "revision", "reference"],
+          "properties": {
+            "state": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1200
+            },
+            "revision": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1200
+            },
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1200,
+              "pattern": "^(synthetic|fixture)://[a-z0-9/_:.-]+$"
+            }
+          }
+        },
+        "external_action": {
+          "type": "string",
+          "enum": ["NONE", "SEND_CANDIDATE", "SIGNATURE_CANDIDATE"]
+        },
+        "human_approval_required": {
+          "const": true
+        },
+        "execute": {
+          "const": false
+        }
+      }
+    }
+  }
+}

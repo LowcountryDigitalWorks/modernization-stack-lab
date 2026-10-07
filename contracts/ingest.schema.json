@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ldw:lab:ingest:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "domain",
+    "provider",
+    "provider_record_id",
+    "ldw_id",
+    "created_at",
+    "observed_at",
+    "source_ref",
+    "provenance",
+    "freshness",
+    "raw_ref",
+    "normalized_state",
+    "status",
+    "failure",
+    "idempotency_key",
+    "human_review_required",
+    "data_classification",
+    "execute",
+    "data"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ldw.lab-record.v1"
+    },
+    "domain": {
+      "const": "ingest"
+    },
+    "provider": {
+      "type": "string",
+      "enum": ["oss-ingest"]
+    },
+    "provider_record_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200
+    },
+    "ldw_id": {
+      "type": "string",
+      "pattern": "^ldw_[a-f0-9]{64}$"
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "observed_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "source_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200,
+      "pattern": "^(synthetic|fixture)://[a-z0-9/_:.-]+$"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "fixture_id", "adapter_revision"],
+      "properties": {
+        "method": {
+          "const": "MOCK_FIXTURE"
+        },
+        "fixture_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "adapter_revision": {
+          "const": "lab-001.v1"
+        }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "as_of"],
+      "properties": {
+        "state": {
+          "const": "FIXTURE"
+        },
+        "as_of": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        }
+      }
+    },
+    "raw_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200,
+      "pattern": "^(synthetic|fixture)://[a-z0-9/_:.-]+$"
+    },
+    "normalized_state": {
+      "const": "REFERENCE_ONLY"
+    },
+    "status": {
+      "const": "NORMALIZED"
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "reason"],
+      "properties": {
+        "code": {
+          "const": "NONE"
+        },
+        "reason": {
+          "const": ""
+        }
+      }
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^replay_[a-f0-9]{64}$"
+    },
+    "human_review_required": {
+      "const": true
+    },
+    "data_classification": {
+      "const": "SYNTHETIC"
+    },
+    "execute": {
+      "const": false
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_ref",
+        "media_class",
+        "extraction_adapter",
+        "fields",
+        "tables",
+        "confidence",
+        "provenance",
+        "validation_required",
+        "destination_candidate"
+      ],
+      "properties": {
+        "input_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200,
+          "pattern": "^(synthetic|fixture)://[a-z0-9/_:.-]+$"
+        },
+        "media_class": {
+          "type": "string",
+          "enum": ["DOCUMENT", "EMAIL", "TABLE"]
+        },
+        "extraction_adapter": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "value", "confidence", "source_location"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "source_location": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              }
+            }
+          },
+          "maxItems": 30
+        },
+        "tables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "columns", "rows"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "columns": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1200
+                },
+                "maxItems": 30
+              },
+              "rows": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1200
+                  },
+                  "maxItems": 30
+                },
+                "maxItems": 30
+              }
+            }
+          },
+          "maxItems": 30
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "provenance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "validation_required": {
+          "const": true
+        },
+        "destination_candidate": {
+          "type": "string",
+          "enum": ["HUMAN_REVIEW", "CUSTOMER_NATIVE_SYSTEM"]
+        }
+      }
+    }
+  }
+}
