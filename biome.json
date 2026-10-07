@@ -3,11 +3,11 @@
   "files": {
     "includes": [
       "**",
-      "!**/dist",
-      "!**/node_modules",
-      "!**/package-lock.json",
-      "!**/generated-validators.js",
-      "!**/work"
+      "!dist",
+      "!node_modules",
+      "!package-lock.json",
+      "!src/generated-validators.js",
+      "!work"
     ]
   },
   "formatter": {
