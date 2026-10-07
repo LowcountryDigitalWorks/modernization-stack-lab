@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Synthetic-only Lowcountry Digital Works modernization reference lab.">
+    <title>Modernization Stack · LDW Reference Lab</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to lab content</a>
+    <header>
+      <p class="eyebrow">LOWCOUNTRY DIGITAL WORKS / REFERENCE LAB</p>
+      <h1>Modernization Stack</h1>
+      <p class="intro">Compare evidence across replaceable providers. Keep the method portable.</p>
+      <p class="boundary">Synthetic fixtures only · No customer data · No vendor actions</p>
+    </header>
+    <main id="main">
+      <section aria-labelledby="proof-heading" class="proof">
+        <div><h2 id="proof-heading">Deterministic proof</h2><p id="proof-status" role="status">Loading local fixtures…</p></div>
+        <button id="replay" type="button" disabled>Replay synthetic fixtures</button>
+        <p id="proof-note">No provider connection is proven. Replay checks schema and exact deterministic readback for this page session.</p>
+      </section>
+      <section aria-labelledby="domains-heading">
+        <h2 id="domains-heading">Component domains</h2>
+        <p>Small reference contracts, with human review at the action boundary.</p>
+        <div id="domains" class="domains"></div>
+      </section>
+      <section aria-labelledby="fixtures-heading" class="fixture-section">
+        <h2 id="fixtures-heading">Inspect synthetic evidence</h2>
+        <label for="fixture">Reference fixture</label>
+        <select id="fixture"><option value="">Choose a fixture</option></select>
+        <p id="fixture-status" role="status">Select a fixture to read the normalized contract.</p>
+        <textarea id="readback" readonly rows="14" aria-label="Normalized synthetic evidence">No fixture selected.</textarea>
+      </section>
+      <section aria-labelledby="authority-heading">
+        <h2 id="authority-heading">Authority & next gates</h2>
+        <p>Watch observation normalization and routing belong to WATCH-EVENT-001. Account activation, provider credentials, external sends and deployment remain separately gated.</p>
+        <ul class="references">
+          <li><a href="https://github.com/LowcountryDigitalWorks/business-operations/issues/519">#519 · Component frontier (authorized access required)</a></li>
+          <li><a href="https://github.com/LowcountryDigitalWorks/business-operations/issues/520">#520 · Reference-tool proofs (authorized access required)</a></li>
+          <li><a href="https://github.com/LowcountryDigitalWorks/business-operations/issues/521">#521 · Watch contract ownership (authorized access required)</a></li>
+          <li><a href="https://github.com/LowcountryDigitalWorks/modernization-stack-lab/issues/1">LAB-001 · Foundation acceptance</a></li>
+          <li><a href="https://github.com/LowcountryDigitalWorks/modernization-stack-lab/blob/main/docs/PROVIDER_GATES.md">Provider proof gates (available after PR acceptance)</a></li>
+        </ul>
+      </section>
+    </main>
+    <footer>Reference architecture · Provider systems and owning GitHub workstreams remain authoritative.</footer>
+  </body>
+</html>

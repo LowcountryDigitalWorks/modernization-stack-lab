@@ -1,0 +1,24 @@
+{
+  "fixture_id": "tally-discovery",
+  "domain": "discovery",
+  "provider": "tally",
+  "scenario": "synthetic-reference",
+  "source_record": {
+    "id": "synthetic-tally-discovery-001",
+    "revision": "synthetic-revision-001",
+    "created_at": "2026-10-06T12:00:00Z",
+    "observed_at": "2026-10-06T12:00:00Z",
+    "answers": {
+      "question": "What would make this synthetic workflow useful?",
+      "answer": "Reduce repeated data entry",
+      "answer_state": "KNOWN",
+      "question_kind": "FIXED",
+      "follow_up_reason": "",
+      "answer_provenance": "Synthetic respondent entry",
+      "prohibited_data_guard": "PASS_SYNTHETIC",
+      "stopping_state": "COMPLETE",
+      "normalized_field": "desired_outcome",
+      "human_qualification_required": true
+    }
+  }
+}

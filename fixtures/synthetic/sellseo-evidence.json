@@ -1,0 +1,28 @@
+{
+  "fixture_id": "sellseo-evidence",
+  "domain": "evidence",
+  "provider": "sellseo-reference",
+  "scenario": "synthetic-reference",
+  "source_record": {
+    "id": "synthetic-sellseo-evidence-001",
+    "revision": "synthetic-revision-001",
+    "created_at": "2026-10-06T12:00:00Z",
+    "observed_at": "2026-10-06T12:00:00Z",
+    "finding": {
+      "finding": "Synthetic link has an unclear label",
+      "evidence": [
+        {
+          "reference": "synthetic://evidence/link/001",
+          "verification_method": "Inspect synthetic local fixture label"
+        }
+      ],
+      "confidence": 0.9,
+      "why_it_matters": "A clear label helps a reader choose a next step",
+      "explanation": "This fixture demonstrates evidence-to-action semantics only",
+      "action_candidate": "Human review of link wording",
+      "cta_class": "RECHECK",
+      "verification_state": "SYNTHETIC_VERIFIED",
+      "recheck_ref": "synthetic://evidence/recheck/001"
+    }
+  }
+}

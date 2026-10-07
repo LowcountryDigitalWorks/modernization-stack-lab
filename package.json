@@ -1,0 +1,37 @@
+{
+  "name": "@lowcountrydigitalworks/modernization-stack-lab",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "node src/server.ts",
+    "format": "biome format --write .",
+    "lint": "biome check .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts",
+    "build": "node scripts/build.mjs",
+    "secret:scan": "node scripts/secret-scan.mjs",
+    "validate": "npm run lint && npm run typecheck && npm run schema:check && npm test && npm run secret:scan && npm run build && npm run worker:smoke",
+    "browser:smoke": "node scripts/browser-smoke.mjs",
+    "audit:runtime": "npm audit --omit=dev --audit-level=high",
+    "audit:all": "npm audit --audit-level=high",
+    "schema:generate": "node scripts/generate-validators.mjs",
+    "schema:check": "node scripts/generate-validators.mjs --check",
+    "worker:smoke": "node scripts/worker-smoke.mjs"
+  },
+  "dependencies": {
+    "hono": "4.13.13"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@biomejs/biome": "2.5.15",
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.19.1",
+    "ajv": "8.20.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  }
+}
