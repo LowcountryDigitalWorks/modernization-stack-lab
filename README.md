@@ -34,7 +34,7 @@ use local fixtures only. Audit/install operations contact package/tool registrie
 - Docs approval remains mandatory; all normalized records and actions have `execute=false`.
 - Watch exposes a reference seam; business-operations #521 owns the observation/routing contract.
 - Source `main` is approved truth; meaningful changes use a focused PR and independent review.
-  Foundation PR acceptance is still pending. No product release is selected.
+  Foundation PR #2 was accepted and merged on 2026-10-07; real provider proofs remain separately gated. No product release is selected.
 
 Governing references: business-operations #519, #520, #521 and lab issue #1.
 Private issue references require authorized access; their private contents are not published here.
